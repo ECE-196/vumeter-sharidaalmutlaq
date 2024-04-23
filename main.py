@@ -11,8 +11,16 @@ status.direction = Direction.OUTPUT
 
 led_pins = [
     board.IO21,
-    board.IO26, # type: ignore
+    board.IO26,# type: ignore
     board.IO47,
+    board.IO33,
+    board.IO34,
+    board.IO48,
+    board.IO35,
+    board.IO36,
+    board.IO37,
+    board.IO38,
+    board.IO39,
     # do the rest...
 ]
 
@@ -27,11 +35,23 @@ while True:
 
     print(volume)
 
-    leds[0].value = not leds[0].value
-    leds[1].value = not leds[0].value
+    a = volume*11
+    b = a//55000
+    
+    for i, led in enumerate(leds):
+        if i<b:
+            led.value = 1
+            
+        else:
+            led.value = 0
+        
+    sleep(0.4)
 
-    sleep(1)
+
+    
 
     # instead of blinking,
     # how can you make the LEDs
     # turn on like a volume meter?
+
+
